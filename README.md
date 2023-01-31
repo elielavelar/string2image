@@ -1,10 +1,10 @@
-<p align="center">
+<p style="text-align: center">
     <a href="http://172.20.28.201:3000/Muhlbauer_El_Salvador" target="_blank">
         <img src="https://mb.citas-dui-sv.com/img/logo-alt.png" height="100px">
     </a>
-    <h1 align="center">String to Image - Log Scrapper</h1>
-    <br/>
 </p>
+<h1 style="text-align: center">String to Image - Log Scrapper</h1>
+<br/>
 Script application to scrap logs and convert base64 strings to images and save related message data.
 
 DIRECTORY STRUCTURE
