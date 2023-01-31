@@ -38,8 +38,7 @@ METHOD 2: Building executable file
 - Activate virtual environment
 - Install requirements
 - Create .env file
-- Run pyinstaller
-- Run auto-py-to-exe *optional
+- Run pyinstaller or auto-py-to-exe *optional
 - Run executable file
 ~~~~~~~~~~~~
 
