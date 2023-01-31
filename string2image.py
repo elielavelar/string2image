@@ -1,17 +1,20 @@
 import os
 import base64
+import glob
 from datetime import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
 currentDate = datetime.now()
-filesource = os.getenv('FILE_SOURCE_PATH')
+
+directory_source_path = os.getenv('DIRECTORY_SOURCE_PATH') or os.path.dirname(os.path.realpath(__file__)) + '/source/'
 directory_main_path = os.getenv('DIRECTORY_PATH') or os.path.dirname(os.path.realpath(__file__)) + '/'
 results_path = os.getenv('RESULTS_PATH') or 'results/'
 directory_path = directory_main_path + results_path+currentDate.strftime('%Y%m%d_%H%M%S')+'/'
 images_path = os.getenv('IMAGES_PATH') or 'images/'
 messages_path = os.getenv('MESSAGES_PATH') or 'messages/'
 
+sourceFileExtension = os.getenv('SOURCE_FILE_EXTENSION') or 'log'
 imageExtension = os.getenv('IMAGE_EXTENSION') or 'jpg'
 messageExtension = os.getenv('MESSAGE_EXTENSION') or 'txt'
 
@@ -44,44 +47,57 @@ checkdirectory(image_path)
 checkdirectory(message_path)
 
 messageStarted = False
+imageFileName = ''
+matchFileStarted = False
 index = 0
 
-with open(filesource) as f:
-    for line in f:
-        if stringFindStart in line:
-            content = getbetween(line, stringFindStart, stringFindEnd)
-            result = content
-            index = index + 1
-            file_result.write('=========================================================\n')
-            file_result.write('Imagen '+str(index)+'\n')
-            file_result.write('=========================================================\n')
-            file_result.write(line)
-            file_result.write(result)
+for filename in glob.glob(directory_source_path + '*.'+sourceFileExtension):
+    with open(filename, 'r') as f:
+        for line in f:
+            if stringFindStart in line:
+                matchFileStarted = True
+                content = getbetween(line, stringFindStart, stringFindEnd)
+                result = content
+                index = index + 1
+                file_result.write('=========================================================\n')
+                file_result.write('Imagen '+str(index)+'\n')
+                file_result.write('=========================================================\n')
+                file_result.write(line)
+                file_result.write(result)
 
-            x = datetime.now()
-            file_name = x.strftime('%Y%m%d_%H%M%S_%f.'+imageExtension)
+                x = datetime.now()
+                imageFileName = x.strftime('%Y%m%d_%H%M%S_%f')
+                file_name = imageFileName+'.'+imageExtension
 
-            file_path = image_path + file_name
+                file_path = image_path + file_name
 
-            fp = open(file_path, 'wb')
-            fp.write(base64.b64decode(result))
-            fp.close()
+                fp = open(file_path, 'wb')
+                fp.write(base64.b64decode(result))
+                fp.close()
 
-        if messageStart in line or messageStarted:
-            if messageStart in line:
-                messageDate = datetime.now()
-                message_file_name = messageDate.strftime('%Y%m%d_%H%M%S_%f.'+messageExtension)
-                file_message = open(message_path+message_file_name, 'w')
-                messageStarted = True
+            if messageStart in line or messageStarted:
+                if messageStart in line:
+                    messageDate = datetime.now()
+                    if matchFileStarted and imageFileName != '':
+                        messageFileName = imageFileName
+                    else:
+                        messageFileName = messageDate.strftime('%Y%m%d_%H%M%S_%f')+'_ImageNotFound'
 
-            if messageEnd in line:
-                messageStarted = False
-                file_message.write(line)
-                file_message.close()
+                    message_file_name = messageFileName+'.'+messageExtension
+                    file_message = open(message_path+message_file_name, 'w')
+                    messageStarted = True
 
-            if messageStarted:
-                file_message.write(line)
+                if messageEnd in line:
+                    messageStarted = False
+                    file_message.write(line)
+                    file_message.close()
+                    matchFileStarted = False
+                    imageFileName = ''
+                if messageStarted:
+                    file_message.write(line)
 
-            file_result.write(line)
+                file_result.write(line)
 
 file_result.close()
+print('Done!')
+print('Results Images: '+str(index))

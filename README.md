@@ -46,7 +46,8 @@ CONFIGURATION
 ~~~~~~~~~~~~
 - Create .env file
 - Set environment variables:
-    + FILE_SOURCE_PATH: Path to the file to scrap
+    + DIRECTORY_SOURCE_PATH: Path to the directory to scrap
+    + SOURCE_FILE_EXTENSION: Extension of the files to scrap
     + DIRECTORY_PATH: Path to the directory where the images will be saved
     + RESULTS_PATH: Sub-directory's name where the results will be saved 
     + IMAGE_EXTENSION: Extension of the image to save
