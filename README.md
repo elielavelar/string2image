@@ -1,9 +1,9 @@
 <p style="text-align: center">
     <a href="http://172.20.28.201:3000/Muhlbauer_El_Salvador" target="_blank">
-        <img src="https://mb.citas-dui-sv.com/img/logo-alt.png" height="100px">
+        <img src="https://mb.citas-dui-sv.com/img/logo-alt.png" height="100px" alt="MB Logo">
     </a>
 </p>
-<h1 style="text-align: center">String to Image - Log Scrapper</h1>
+<h1 style="text-align: center">String to Image - Log Scraper</h1>
 <br/>
 Script application to scrap logs and convert base64 strings to images and save related message data.
 
@@ -41,6 +41,21 @@ METHOD 2: Building executable file
 - Run pyinstaller
 - Run auto-py-to-exe *optional
 - Run executable file
+~~~~~~~~~~~~
+
+CONFIGURATION
+~~~~~~~~~~~~
+- Create .env file
+- Set environment variables:
+    + FILE_SOURCE_PATH: Path to the file to scrap
+    + DIRECTORY_PATH: Path to the directory where the images will be saved
+    + RESULTS_PATH: Sub-directory's name where the results will be saved 
+    + IMAGE_EXTENSION: Extension of the image to save
+    + IMAGES_PATH: Sub-directory's name where the images will be saved
+    + MESSAGE_EXTENSION: Extension of the message file to save
+    + MESSAGES_PATH: Sub-directory's name where the messages will be saved
+    + STRING_TO_FIND_START: String to find the start of the base64 string
+    + STRING_TO_FIND_END: String to find the end of the base64 string
 ~~~~~~~~~~~~
 
 BUILT WITH
