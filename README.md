@@ -5,7 +5,7 @@
 </p>
 <h1 style="text-align: center">String to Image - Log Scraper</h1>
 <br/>
-Script application to scrap logs and convert base64 strings to images and save related message data.
+Simple Script application to scrap logs and convert base64 strings to images and save related message data.
 
 DIRECTORY STRUCTURE
 -------------------
