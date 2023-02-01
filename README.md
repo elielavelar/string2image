@@ -1,6 +1,6 @@
 <p style="text-align: center">
-    <a href="http://github.com/elielavelar" target="_blank">
-        <img src="https://mb.citas-dui-sv.com/img/logo.png" height="100px" alt="MB Logo">
+    <a href="https://github.com/elielavelar/string2image" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2570/2570575.png" height="100px" alt="Scraper Logo">
     </a>
 </p>
 <h1 style="text-align: center">String to Image - Log Scraper</h1>
@@ -68,5 +68,5 @@ BUILT WITH
 AUTHOR
 - Eliel Avelar
 <br/>
-<a href="mailto:ElielAbisai.AvelarJaimes@muehlbauer.de">E-mail address</a>
+<a href="mailto:elielavelar@gmail.com">E-mail address</a>
 
